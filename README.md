@@ -7,11 +7,11 @@ LoanManagementSystem/
 ├── README.md
 ├── .gitignore
 └── src/
-└── main/
-└── java/
-└── LoanManagementSystem/
-├── LoanRecord.java
-└── LoanManagementContract.java
+     └── main/
+          └── java/
+               └── LoanManagementSystem/
+                      ├── LoanRecord.java
+                          └── LoanManagementContract.java
 
 ## Features
 
