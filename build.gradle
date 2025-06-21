@@ -1,0 +1,57 @@
+plugins {
+    //id 'checkstyle'
+    id 'java-library'
+    id 'application'
+}
+
+group 'com.loan.management'
+version '1.0'
+
+repositories {
+    mavenCentral()  // Replacing jcenter() as it's deprecated
+    maven {
+        url "https://hyperledger.jfrog.io/hyperledger/fabric-maven"
+    }
+    maven {
+        url 'https://jitpack.io'
+    }
+}
+
+dependencies {
+    // Hyperledger Fabric Chaincode Shim for Fabric Chaincode Development
+    compileOnly 'org.hyperledger.fabric-chaincode-java:fabric-chaincode-shim:2.2.+'
+    
+    // JSON library to handle data formatting, e.g., Genson (for serialization)
+    implementation 'com.owlike:genson:1.5'
+    
+    // Apache Commons Math for any mathematical computations (if needed)
+    api 'org.apache.commons:commons-math3:3.6.1'
+    
+    // Google Guava for utility functions (can be used for list/map handling or concurrency)
+    implementation 'com.google.guava:guava:28.2-jre'
+    
+    // JUnit 5 dependencies for unit testing the chaincode logic
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+
+    implementation 'org.apache.logging.log4j:log4j-api:2.14.1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.14.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+application {
+    mainClass = 'com.loan.management.Main'  
+}
+
+// Checkstyle configuration 
+/*checkstyle {
+    toolVersion = '8.36'  // Latest version of Checkstyle, feel free to adjust
+    configFile = rootProject.file('config/checkstyle/checkstyle.xml')  // Optional, path to your Checkstyle configuration file
+}*/
